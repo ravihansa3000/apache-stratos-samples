@@ -142,7 +142,6 @@ public class InstanceSpawnedEvent extends TopologyEvent {
         instanceSpawnedEvent.setMemberIp(memberIp);
         instanceSpawnedEvent.setLbClusterId(lbClusterId);
         instanceSpawnedEvent.setMemberPublicIp(memberPublicIp);
-        instanceSpawnedEvent.setProperties(properties);
 
         topologyPublisher.publish(instanceSpawnedEvent);
         if (log.isInfoEnabled()) {

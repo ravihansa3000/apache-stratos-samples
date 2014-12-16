@@ -45,6 +45,7 @@ import org.apache.stratos.messaging.message.receiver.topology.TopologyEventRecei
 import org.apache.stratos.messaging.message.receiver.topology.TopologyManager;
 import org.samples.apache.stratos.event.model.SampleEventInterface;
 import org.samples.apache.stratos.event.util.EventFileReader;
+import org.samples.apache.stratos.event.util.HealthStatisticsPublisher;
 import org.samples.apache.stratos.event.util.SampleConstants;
 
 import java.lang.reflect.Type;
@@ -65,6 +66,7 @@ public class SampleEventPublisher implements Runnable {
     private static final Type serviceType = new TypeToken<Collection<Service>>() {
     }.getType();
     private static Gson gson = new Gson();
+    private static HealthStatisticsPublisher healthStatisticsPublisher = new HealthStatisticsPublisher();
     private boolean terminated;
 
     public SampleEventPublisher() {
@@ -251,42 +253,6 @@ public class SampleEventPublisher implements Runnable {
         }
 
         final TenantEventReceiver tenantEventReceiver = new TenantEventReceiver();
-        tenantEventReceiver.addEventListener(new SubscriptionDomainsAddedEventListener() {
-            @Override
-            protected void onEvent(Event event) {
-                try {
-                    TenantManager.acquireReadLock();
-                    log.info("Subscription domain added event received");
-                    SubscriptionDomainAddedEvent subscriptionDomainAddedEvent = (SubscriptionDomainAddedEvent) event;
-                    log.debug("Subscription domain added event: " + gson.toJson(subscriptionDomainAddedEvent));
-                } catch (Exception e) {
-                    if (log.isErrorEnabled()) {
-                        log.error("Error processing subscription domains added event", e);
-                    }
-                } finally {
-                    TenantManager.releaseReadLock();
-                }
-
-            }
-        });
-
-        tenantEventReceiver.addEventListener(new SubscriptionDomainsRemovedEventListener() {
-            @Override
-            protected void onEvent(Event event) {
-                try {
-                    TenantManager.acquireReadLock();
-                    log.info("Subscription domain removed event received");
-                    SubscriptionDomainRemovedEvent subscriptionDomainRemovedEvent = (SubscriptionDomainRemovedEvent) event;
-                    log.info("Subscription domain removed event: " + gson.toJson(subscriptionDomainRemovedEvent));
-                } catch (Exception e) {
-                    if (log.isErrorEnabled()) {
-                        log.error("Error processing subscription domains removed event", e);
-                    }
-                } finally {
-                    TenantManager.releaseReadLock();
-                }
-            }
-        });
 
         tenantEventReceiver.addEventListener(new CompleteTenantEventListener() {
             private boolean initialized;
@@ -649,5 +615,9 @@ public class SampleEventPublisher implements Runnable {
 
     public void terminate() {
         terminated = true;
+    }
+
+    public static HealthStatisticsPublisher getHealthStatisticsPublisher() {
+        return healthStatisticsPublisher;
     }
 }

@@ -106,7 +106,6 @@ public class ArtifactUpdatedEvent extends InstanceNotifierEvent {
         org.apache.stratos.messaging.event.instance.notifier.ArtifactUpdatedEvent
                 artifactUpdatedEvent = new org.apache.stratos.messaging.event.instance.notifier.ArtifactUpdatedEvent();
         artifactUpdatedEvent.setClusterId(clusterId);
-        artifactUpdatedEvent.setCommitEnabled(commitEnabled);
         artifactUpdatedEvent.setRepoUserName(repoUserName);
         artifactUpdatedEvent.setRepoPassword(repoPassword);
         artifactUpdatedEvent.setRepoURL(repoURL);

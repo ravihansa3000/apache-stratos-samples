@@ -35,7 +35,6 @@ public class TenantUnSubscribedEvent extends TenantEvent {
     private static final Log log = LogFactory.getLog(TenantUnSubscribedEvent.class);
     private int tenantId;
     private String serviceName;
-    private Set<String> clusterIds;
 
     public TenantUnSubscribedEvent() {
 
@@ -44,7 +43,6 @@ public class TenantUnSubscribedEvent extends TenantEvent {
     public TenantUnSubscribedEvent(int tenantId, String serviceName, Set<String> clusterIds) {
         this.tenantId = tenantId;
         this.serviceName = serviceName;
-        this.clusterIds = clusterIds;
     }
 
     public int getTenantId() {
@@ -63,24 +61,17 @@ public class TenantUnSubscribedEvent extends TenantEvent {
         this.serviceName = serviceName;
     }
 
-    public Set<String> getClusterIds() {
-        return Collections.unmodifiableSet(clusterIds);
-    }
-
-    public void setClusterIds(Set<String> clusterIds) {
-        this.clusterIds = clusterIds;
-    }
 
     @Override
     public String toString() {
-        return String.format("[tenant-id] %s , [service] %s , [cluster-id-set] %s",
-                tenantId, serviceName, clusterIds);
+        return String.format("[tenant-id] %s , [service] %s",
+                tenantId, serviceName);
     }
 
     @Override
     public void process() {
         org.apache.stratos.messaging.event.tenant.TenantUnSubscribedEvent
-                tenantUnSubscribedEvent = new org.apache.stratos.messaging.event.tenant.TenantUnSubscribedEvent(tenantId, serviceName, clusterIds);
+                tenantUnSubscribedEvent = new org.apache.stratos.messaging.event.tenant.TenantUnSubscribedEvent(tenantId, serviceName);
 
         tenantPublisher.publish(tenantUnSubscribedEvent);
         if (log.isInfoEnabled()) {

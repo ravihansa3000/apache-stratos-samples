@@ -26,7 +26,10 @@ lib_path=${script_path}/../lib/
 class_path=`echo ${lib_path}/*.jar | tr ' ' ':'`
 properties="-Djndi.properties.dir=${script_path}/../conf
             -Devent.user.data.path=${script_path}/../data/SampleEvents.xml
-            -Dlog4j.configuration=file://${script_path}/../conf/log4j.properties"
+            -Dlog4j.configuration=file://${script_path}/../conf/log4j.properties
+            -Dcep.stats.publisher.enabled=false
+            -Dthrift.receiver.ip=
+            -Dthrift.receiver.port="
 
 # Uncomment below line to enable remote debugging
 #debug="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005"

@@ -7,7 +7,7 @@
     <groupId>org.samples</groupId>
     <artifactId>apache-stratos-sample-event-publisher</artifactId>
     <name>Apache Stratos Sample Event Publisher</name>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>4.0.0-SNAPSHOT</version>
 
     <repositories>
 
@@ -95,7 +95,22 @@
         <dependency>
             <groupId>org.apache.stratos</groupId>
             <artifactId>org.apache.stratos.messaging</artifactId>
-            <version>4.1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.wso2.carbon</groupId>
+            <artifactId>org.wso2.carbon.databridge.agent.thrift</artifactId>
+            <version>4.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.wso2.carbon</groupId>
+            <artifactId>org.wso2.carbon.utils</artifactId>
+            <version>4.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.stratos</groupId>
+            <artifactId>org.apache.stratos.common</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
@@ -140,6 +155,13 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>

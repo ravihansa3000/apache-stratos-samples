@@ -19,9 +19,8 @@
 
 package org.samples.apache.stratos.event.domain.tenant;
 
-import org.apache.stratos.messaging.domain.tenant.Subscription;
-
 import javax.xml.bind.annotation.XmlType;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,66 +30,47 @@ import java.util.Map;
  */
 
 @XmlType(name = "Tenant")
-public class Tenant {
-
+public class Tenant implements Serializable {
+    private static final long serialVersionUID = 2154359124188618021L;
     private int tenantId;
     private String tenantDomain;
-    // Map<ServiceName, Subscription>
-    private Map<String, Subscription> serviceNameSubscriptionMap;
+    private Map<String, Boolean> serviceNameMap;
 
-    public Tenant() {
+    public Tenant(){
+
     }
 
     public Tenant(int tenantId, String tenantDomain) {
         this.tenantId = tenantId;
         this.tenantDomain = tenantDomain;
-        this.serviceNameSubscriptionMap = new HashMap<String, Subscription>();
+        this.serviceNameMap = new HashMap();
     }
 
     public int getTenantId() {
-        return tenantId;
-    }
-
-    public void setTenantId(int tenantId) {
-        this.tenantId = tenantId;
+        return this.tenantId;
     }
 
     public String getTenantDomain() {
-        return tenantDomain;
+        return this.tenantDomain;
     }
 
     public void setTenantDomain(String tenantDomain) {
         this.tenantDomain = tenantDomain;
     }
 
-    public Subscription getSubscription(String serviceName) {
-        if (serviceNameSubscriptionMap.containsKey(serviceName)) {
-            return serviceNameSubscriptionMap.get(serviceName);
-        }
-        return null;
+    public Collection<String> getServiceSubscriptions() {
+        return this.serviceNameMap.keySet();
     }
 
-    public Collection<Subscription> getSubscriptions() {
-        return serviceNameSubscriptionMap.values();
+    public boolean isServiceSubscribed(String serviceName) {
+        return this.serviceNameMap.containsKey(serviceName);
     }
 
-    public boolean isSubscribed(String serviceName) {
-        return serviceNameSubscriptionMap.containsKey(serviceName);
+    public void addServiceSubscription(String serviceName) {
+        this.serviceNameMap.put(serviceName, Boolean.valueOf(true));
     }
 
-    public void addSubscription(Subscription subscription) {
-        serviceNameSubscriptionMap.put(subscription.getServiceName(), subscription);
-    }
-
-    public void removeSubscription(String serviceName) {
-        serviceNameSubscriptionMap.remove(serviceName);
-    }
-
-    public Map<String, Subscription> getServiceNameSubscriptionMap() {
-        return serviceNameSubscriptionMap;
-    }
-
-    public void setServiceNameSubscriptionMap(Map<String, Subscription> serviceNameSubscriptionMap) {
-        this.serviceNameSubscriptionMap = serviceNameSubscriptionMap;
+    public void removeServiceSubscription(String serviceName) {
+        this.serviceNameMap.remove(serviceName);
     }
 }

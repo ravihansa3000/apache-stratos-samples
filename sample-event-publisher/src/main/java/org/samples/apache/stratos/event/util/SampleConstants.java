@@ -19,12 +19,12 @@
 
 package org.samples.apache.stratos.event.util;
 
-import org.samples.apache.stratos.event.domain.tenant.Subscription;
 import org.samples.apache.stratos.event.domain.tenant.SubscriptionDomain;
 import org.samples.apache.stratos.event.domain.tenant.Tenant;
 import org.samples.apache.stratos.event.domain.topology.*;
 import org.samples.apache.stratos.event.model.Wrapper;
 import org.samples.apache.stratos.event.model.action.SleepEvent;
+import org.samples.apache.stratos.event.model.cep.CEPHealthStatEvent;
 import org.samples.apache.stratos.event.model.health.stat.MemberFaultEvent;
 import org.samples.apache.stratos.event.model.instance.notifier.ArtifactUpdatedEvent;
 import org.samples.apache.stratos.event.model.instance.notifier.InstanceCleanupClusterEvent;
@@ -56,12 +56,7 @@ public class SampleConstants {
             InstanceReadyToShutdownEvent.class,
             InstanceStartedEvent.class,
 
-
             CompleteTenantEvent.class,
-            SubscriptionDomainAddedEvent.class,
-            SubscriptionDomainRemovedEvent.class,
-            SubscriptionDomainsAddedEvent.class,
-            SubscriptionDomainsRemovedEvent.class,
             TenantCreatedEvent.class,
             TenantRemovedEvent.class,
             TenantSubscribedEvent.class,
@@ -70,7 +65,6 @@ public class SampleConstants {
 
 
             ClusterCreatedEvent.class,
-            ClusterMaintenanceModeEvent.class,
             ClusterRemovedEvent.class,
             CompleteTopologyEvent.class,
             InstanceSpawnedEvent.class,
@@ -83,8 +77,6 @@ public class SampleConstants {
             ServiceCreatedEvent.class,
             ServiceRemovedEvent.class,
 
-
-            Subscription.class,
             SubscriptionDomain.class,
             Tenant.class,
 
@@ -99,5 +91,7 @@ public class SampleConstants {
             Topology.class,
 
             SleepEvent.class,
+
+            CEPHealthStatEvent.class,
     };
 }

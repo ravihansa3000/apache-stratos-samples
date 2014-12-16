@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SampleEvents>
 
+    <CEPHealthStatEvent>
+        <clusterId>cluster-2</clusterId>
+        <memberId>member-1</memberId>
+        <partitionId>partitionId-1</partitionId>
+        <networkPartitionId>np-1</networkPartitionId>
+        <health>memory_consumption1</health>
+        <value>72</value>
+    </CEPHealthStatEvent>
+
+    <CEPHealthStatEvent>
+        <clusterId>cluster-2</clusterId>
+        <memberId>member-1</memberId>
+        <partitionId>partitionId-1</partitionId>
+        <networkPartitionId>np-1</networkPartitionId>
+        <health>load_average</health>
+        <value>63</value>
+    </CEPHealthStatEvent>
+
+    <CEPHealthStatEvent>
+        <clusterId>cluster-2</clusterId>
+        <memberId>member-1</memberId>
+        <partitionId>partitionId-1</partitionId>
+        <networkPartitionId>np-1</networkPartitionId>
+        <health>load_average</health>
+        <value>59</value>
+    </CEPHealthStatEvent>
+
     <ServiceCreatedEvent>
         <serviceName>service-2</serviceName>
         <serviceType>SingleTenant</serviceType>
