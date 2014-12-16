@@ -29,7 +29,9 @@ properties="-Djndi.properties.dir=${script_path}/../conf
             -Dlog4j.configuration=file://${script_path}/../conf/log4j.properties
             -Dcep.stats.publisher.enabled=false
             -Dthrift.receiver.ip=
-            -Dthrift.receiver.port="
+            -Dthrift.receiver.port=
+            -Djavax.net.ssl.trustStore=/home/akila/Documents/ASF/apache-stratos-samples/sample-event-publisher/src/main/security/client-truststore.jks
+            -Djavax.net.ssl.trustStorePassword=wso2carbon"
 
 # Uncomment below line to enable remote debugging
 #debug="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005"
