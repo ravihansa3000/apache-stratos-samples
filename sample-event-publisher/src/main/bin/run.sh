@@ -28,6 +28,7 @@ properties="-Djndi.properties.dir=${script_path}/../conf
             -Devent.user.data.path=${script_path}/../data/SampleEvents.xml
             -Dlog4j.configuration=file://${script_path}/../conf/log4j.properties
             -Dcep.stats.publisher.enabled=false
+            -Dthrift.receiver.url=tcp://54.173.237.39:7721
             -Dthrift.receiver.ip=
             -Dthrift.receiver.port=
             -Djavax.net.ssl.trustStore=/home/akila/Documents/ASF/apache-stratos-samples/sample-event-publisher/src/main/security/client-truststore.jks
