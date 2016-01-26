@@ -138,7 +138,7 @@ public class InstanceSpawnedEvent extends TopologyEvent {
 
         org.apache.stratos.messaging.event.topology.InstanceSpawnedEvent
                 instanceSpawnedEvent = new org.apache.stratos.messaging.event.topology.InstanceSpawnedEvent(
-                serviceName, clusterId, networkPartitionId, partitionId, memberId);
+                serviceName, clusterId, networkPartitionId, partitionId, memberId, System.currentTimeMillis());
         instanceSpawnedEvent.setMemberIp(memberIp);
         instanceSpawnedEvent.setLbClusterId(lbClusterId);
         instanceSpawnedEvent.setMemberPublicIp(memberPublicIp);

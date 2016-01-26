@@ -95,7 +95,7 @@
         <dependency>
             <groupId>org.apache.stratos</groupId>
             <artifactId>org.apache.stratos.messaging</artifactId>
-            <version>${project.version}</version>
+            <version>${stratos.version}</version>
         </dependency>
         <dependency>
             <groupId>org.wso2.carbon</groupId>
@@ -110,7 +110,7 @@
         <dependency>
             <groupId>org.apache.stratos</groupId>
             <artifactId>org.apache.stratos.common</artifactId>
-            <version>${project.version}</version>
+            <version>${stratos.version}</version>
         </dependency>
     </dependencies>
 
@@ -165,6 +165,10 @@
             </plugin>
         </plugins>
     </build>
+
+    <properties>
+       <stratos.version>4.0.0-wso2v1</stratos.version>
+    </properties>
 
 
 </project>

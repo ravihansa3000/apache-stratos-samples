@@ -24,6 +24,8 @@ import org.apache.commons.logging.LogFactory;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -35,6 +37,7 @@ public class TenantSubscribedEvent extends TenantEvent {
     private static final Log log = LogFactory.getLog(TenantSubscribedEvent.class);
     private int tenantId;
     private String serviceName;
+    private List<String> clusterIds;
 
     public TenantSubscribedEvent() {
 
@@ -61,6 +64,14 @@ public class TenantSubscribedEvent extends TenantEvent {
         this.serviceName = serviceName;
     }
 
+    public List<String> getClusterIds() {
+        return clusterIds;
+    }
+
+    public void setClusterIds(List<String> clusterIds) {
+        this.clusterIds = clusterIds;
+    }
+
     @Override
     public String toString() {
         return String.format("[tenant-id] %s , [service] %s",
@@ -69,8 +80,9 @@ public class TenantSubscribedEvent extends TenantEvent {
 
     @Override
     public void process() {
+        Set<String> clusterIdSet = (clusterIds == null) ? new HashSet<String>() : new HashSet<String>(clusterIds);
         org.apache.stratos.messaging.event.tenant.TenantSubscribedEvent
-                tenantSubscribedEvent = new org.apache.stratos.messaging.event.tenant.TenantSubscribedEvent(tenantId, serviceName);
+                tenantSubscribedEvent = new org.apache.stratos.messaging.event.tenant.TenantSubscribedEvent(tenantId, serviceName, clusterIdSet);
 
         tenantPublisher.publish(tenantSubscribedEvent);
         if (log.isInfoEnabled()) {
